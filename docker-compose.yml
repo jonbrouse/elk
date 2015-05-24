@@ -1,0 +1,5 @@
+logstash:
+  extends:
+    file: docker-compose-common.yml
+    service: logstash
+  build: dockerfiles/logstash
