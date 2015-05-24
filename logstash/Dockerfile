@@ -1,5 +1,4 @@
-#FROM debian:jessie
-FROM brouse/java
+FROM jonbrouse/docker-java
 
 ENV HOME_DIR /opt
 ENV VERSION 1.5.0

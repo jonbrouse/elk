@@ -1,5 +1,14 @@
+elasticsearch:
+  extends:
+    file: docker-compose-common.yml
+    service: elasticsearch
+  build: elasticsearch
+
 logstash:
   extends:
     file: docker-compose-common.yml
     service: logstash
   build: logstash
+  links:
+    - elasticsearch:elasticsearch
+

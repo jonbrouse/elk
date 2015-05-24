@@ -1,5 +1,9 @@
+elasticsearch:
+  ports:
+    - "9200:9200"
+    - "9300:9300"
 logstash:
   ports:
     - "5000:5000"
     - "5000:5000/udp"
-  command: -f /etc/logstash.sample.conf
+  command: -f /etc/logstash.conf
