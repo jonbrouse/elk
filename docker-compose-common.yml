@@ -2,4 +2,4 @@ logstash:
   ports:
     - "5000:5000"
     - "5000:5000/udp"
-  command: -e 'input { stdin { } } output { stdout {} }'
+  command: -f /etc/logstash.sample.conf
