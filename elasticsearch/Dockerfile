@@ -20,6 +20,7 @@ COPY assets/elasticsearch.yml /opt/elasticsearch/config/elasticsearch.yml
 
 EXPOSE 9200
 EXPOSE 9300
+EXPOSE 9400
 
 VOLUME /opt/elasticsearch/data
 

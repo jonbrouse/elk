@@ -1,4 +1,6 @@
 # elk
-Elastic Search, Logstash and Kibana Containers
+Elasticsearch, Logstash and Kibana Containers
 
-Based on the work of [Nathan Leclaire](https://github.com/nathanleclaire/elk)
+Elasticsearch: http://${host}:[9200,9200]
+Logstash: http://${host}:5000
+Kibana: http://${host}:5601
