@@ -13,13 +13,14 @@ Run the containers
 ## Versions
 Elasticsearch and Logstash containers are build with a [Java 8](https://registry.hub.docker.com/u/jonbrouse/docker-java/dockerfile/) container I built.
 
-Elasticsearch Version 1.51
-Logstash Version 1.50
-Kibana Version 4.0.2
- 
-Elasticsearch: http://${host}:[9200,9200]
-Logstash: http://${host}:5000
-Kibana: http://${host}:5601
+ - Elasticsearch Version 1.51
+ - Logstash Version 1.50
+ - Kibana Version 4.0.2
+
+## Port Usage 
+ - Elasticsearch: http://${host}:[9200,9200]
+ - Logstash: http://${host}:5000
+ - Kibana: http://${host}:5601
 
 
 ## Notes
