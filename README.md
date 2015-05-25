@@ -11,7 +11,7 @@ Run the containers
     docker-compose up -d
 
 ## Versions
-Elasticsearch and Logstash containers are build with a [Java 8](https://registry.hub.docker.com/u/jonbrouse/docker-java/dockerfile/) container I built.
+Elasticsearch and Logstash containers are built with a [Java 8](https://registry.hub.docker.com/u/jonbrouse/docker-java/dockerfile/) container from my repo.
 
  - Elasticsearch Version 1.51
  - Logstash Version 1.50
