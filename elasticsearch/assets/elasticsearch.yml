@@ -210,6 +210,7 @@
 # Set both 'bind_host' and 'publish_host':
 #
 #network.host: 192.168.0.1
+network.host: 0.0.0.0
 
 # Set a custom port for the node to node communication (9300 by default):
 #
@@ -382,4 +383,4 @@
 # http server. With this enabled, it may pose a security risk, so disabling
 # it unless you need it is recommended (it is disabled by default).
 #
-#http.jsonp.enable: true
+http.jsonp.enable: true

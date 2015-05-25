@@ -1,7 +1,7 @@
 FROM jonbrouse/docker-java
 
 ENV HOME_DIR /opt
-ENV VERSION 1.5.2
+ENV VERSION 1.5.1
 
 WORKDIR ${HOME_DIR}
 
@@ -13,8 +13,8 @@ RUN apt-get update && \
 RUN curl -O https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-${VERSION}.tar.gz && \
     tar -xvf elasticsearch-${VERSION}.tar.gz && \
     rm -rf elasticsearch-${VERSION}.tar.gz && \
-    ln -s elasticsearch-${VERSION} elasticsearch && \
-    elasticsearch/bin/plugin -install lmenezes/elasticsearch-kopf
+    ln -s elasticsearch-${VERSION} elasticsearch
+#    elasticsearch/bin/plugin -install lmenezes/elasticsearch-kopf
 
 COPY assets/elasticsearch.yml /opt/elasticsearch/config/elasticsearch.yml
 

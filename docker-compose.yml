@@ -3,7 +3,6 @@ elasticsearch:
     file: docker-compose-common.yml
     service: elasticsearch
   build: elasticsearch
-
 logstash:
   extends:
     file: docker-compose-common.yml
@@ -11,7 +10,6 @@ logstash:
   build: logstash
   links:
     - elasticsearch:elasticsearch
-
 kibana:
   extends:
     file: docker-compose-common.yml

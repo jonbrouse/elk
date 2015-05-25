@@ -15,7 +15,7 @@ RUN curl -O https://download.elastic.co/kibana/kibana/kibana-${VERSION}-linux-x6
     rm -rf kibana-${VERSION}-linux-x64.tar.gz && \
     ln -s kibana-${VERSION}-linux-x64 kibana
 
-COPY assets/kibana.yml /opt/kibana/kibana/config/kibana.yml
+COPY assets/kibana.yml /opt/kibana/config/kibana.yml
 
 EXPOSE 5601
 
