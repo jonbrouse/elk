@@ -32,3 +32,5 @@ I added a `tty=true` to the Logstash launch options because it kept immediately 
 I used the following resources when creating this stack:
 -  [Nathan LeClaire's Automating Docker Logging](http://nathanleclaire.com/blog/2015/04/27/automating-docker-logging-elasticsearch-logstash-kibana-and-logspout/)
 - [Fluentd article on Docker Logging](http://www.fluentd.org/guides/recipes/docker-logging)
+
+fluentd
