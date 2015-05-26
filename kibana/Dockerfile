@@ -1,12 +1,12 @@
 FROM debian:jessie
 MAINTAINER Jon Brouse @jonbrouse
 
-ENV VERSION 4.0.2
-
 RUN apt-get update && \
     apt-get install -y curl && \
     apt-get autoclean && \
     apt-get --purge -y autoremove
+
+ENV VERSION 4.0.2
 
 WORKDIR /opt
 

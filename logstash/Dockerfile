@@ -1,14 +1,14 @@
 FROM jonbrouse/docker-java
 
-ENV HOME_DIR /opt
-ENV VERSION 1.5.0
-
-WORKDIR ${HOME_DIR}
-
 RUN apt-get update && \
     apt-get install -y curl && \
     apt-get autoclean && \
     apt-get --purge -y autoremove
+
+ENV HOME_DIR /opt
+ENV VERSION 1.5.0
+
+WORKDIR ${HOME_DIR}
 
 RUN curl -O https://download.elasticsearch.org/logstash/logstash/logstash-${VERSION}.tar.gz && \
     tar -xvf logstash-${VERSION}.tar.gz && \

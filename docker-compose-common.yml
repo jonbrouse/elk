@@ -17,3 +17,4 @@ kibana:
     - "5601:5601"
 fluentd:
   hostname: fluentd
+  command: /opt/td-agent/usr/sbin/td-agent --config /opt/td-agent/etc/td-agent/td-agent.conf

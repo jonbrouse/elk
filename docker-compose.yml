@@ -22,3 +22,5 @@ fluentd:
     file: docker-compose-common.yml
     service: fluentd
   build: fluentd
+  links:
+    - logstash:logstash
