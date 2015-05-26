@@ -17,3 +17,8 @@ kibana:
   build: kibana
   links:
     - elasticsearch:elasticsearch
+fluentd:
+  extends:
+    file: docker-compose-common.yml
+    service: fluentd
+  build: fluentd

@@ -15,3 +15,5 @@ kibana:
   hostname: kibana
   ports:
     - "5601:5601"
+fluentd:
+  hostname: fluentd
