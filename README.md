@@ -1,5 +1,5 @@
 # FELK Docker Containers
-This repo contains the configuration files and Dockerfiles to build individual Fluentd, Elasticsearch, Logstash and Kibana containers. You can use Docker compose to build and run the containers. Fluentd listens to the "Docker logs" from each container.  
+This repo contains the configuration files and Dockerfiles to build individual Fluentd, Elasticsearch, Logstash and Kibana containers. You can use Docker compose to build and run the containers. Fluentd listens to the "Docker logs" from each container and sends them via its TCP forwarded to Logstash.  
 
 ## Up and Running
 Build the containers
@@ -11,9 +11,9 @@ Run the containers
     docker-compose up -d
 
 ## Versions
-Elasticsearch and Logstash containers are build with a [Java 8](https://registry.hub.docker.com/u/jonbrouse/docker-java/dockerfile/) container I built.
+Elasticsearch and Logstash containers are built with a [Java 8 container from my Docker Hub account.](https://registry.hub.docker.com/u/jonbrouse/docker-java/dockerfile/)
 
- - FluentD 0.12.7
+ - Fluentd 0.12.7
  - Elasticsearch Version 1.51
  - Logstash Version 1.50
  - Kibana Version 4.0.2
@@ -30,5 +30,5 @@ I added a `tty=true` to the Logstash launch options because it kept immediately 
 ### Resources
 
 I used the following resources when creating this stack:
-- [Nathan LeClaire's Automating Docker Logging](http://nathanleclaire.com/blog/2015/04/27/automating-docker-logging-elasticsearch-logstash-kibana-and-logspout/)
-- [Fluentd Article on Docker Logging](http://www.fluentd.org/guides/recipes/docker-logging)
+-  [Nathan LeClaire's Automating Docker Logging](http://nathanleclaire.com/blog/2015/04/27/automating-docker-logging-elasticsearch-logstash-kibana-and-logspout/)
+- [Fluentd article on Docker Logging](http://www.fluentd.org/guides/recipes/docker-logging)
