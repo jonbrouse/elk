@@ -8,8 +8,12 @@ logstash:
   extends:
     file: docker-compose-common.yml
     service: logstash
+  links:
+    - elasticsearch
 kibana:
   image: jonbrouse/elk:kibana
   extends:
     file: docker-compose-common.yml
     service: kibana
+  links:
+    - elasticsearch
