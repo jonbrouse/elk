@@ -1,4 +1,4 @@
-FROM jonbrouse/docker-java
+FROM jonbrouse/java:8
 
 RUN apt-get update && \
     apt-get install -y curl && \
@@ -15,7 +15,9 @@ RUN curl -O https://download.elasticsearch.org/logstash/logstash/logstash-${VERS
     rm -rf logstash-${VERSION}.tar.gz && \
     ln -s logstash-${VERSION} logstash
 
-COPY assets/logstash.conf /etc/logstash.conf
+# I want to mount the conf file at run time instead 
+# of adding it during the build process. 
+#COPY assets/logstash.conf /etc/logstash.conf
 
 EXPOSE 5000
 

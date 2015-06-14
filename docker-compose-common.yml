@@ -11,10 +11,9 @@ logstash:
     - "5000:5000/udp"
   command: -f /etc/logstash.conf 
   tty: true
+  volumes:
+    - ./logstash/assets/logstash.conf:/etc/logstash.conf
 kibana:
   hostname: kibana
   ports:
     - "5601:5601"
-fluentd:
-  hostname: fluentd
-  command: /opt/td-agent/usr/sbin/td-agent --config /opt/td-agent/etc/td-agent/td-agent.conf

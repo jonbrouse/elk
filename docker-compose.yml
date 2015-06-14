@@ -1,26 +1,19 @@
 elasticsearch:
+  image: jonbrouse/elk:elasticsearch
   extends:
     file: docker-compose-common.yml
     service: elasticsearch
-  build: elasticsearch
 logstash:
+  image: jonbrouse/elk:logstash
   extends:
     file: docker-compose-common.yml
     service: logstash
-  build: logstash
   links:
-    - elasticsearch:elasticsearch
+    - elasticsearch
 kibana:
+  image: jonbrouse/elk:kibana
   extends:
     file: docker-compose-common.yml
     service: kibana
-  build: kibana
   links:
-    - elasticsearch:elasticsearch
-fluentd:
-  extends:
-    file: docker-compose-common.yml
-    service: fluentd
-  build: fluentd
-  links:
-    - logstash:logstash
+    - elasticsearch
