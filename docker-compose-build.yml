@@ -8,8 +8,19 @@ logstash:
     file: docker-compose-common.yml
     service: logstash
   build: logstash
+  links:
+    - elasticsearch
 kibana:
   extends:
     file: docker-compose-common.yml
     service: kibana
   build: kibana
+  links:
+    - elasticsearch
+fluentd:
+  extends:
+    file: docker-compose-common.yml
+    service: fluentd
+  build: fluentd
+  links:
+    - logstash
