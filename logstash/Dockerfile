@@ -15,7 +15,9 @@ RUN curl -O https://download.elasticsearch.org/logstash/logstash/logstash-${VERS
     rm -rf logstash-${VERSION}.tar.gz && \
     ln -s logstash-${VERSION} logstash
 
-COPY assets/logstash.conf /etc/logstash.conf
+# I want to mount the conf file at run time instead 
+# of adding it during the build process. 
+#COPY assets/logstash.conf /etc/logstash.conf
 
 EXPOSE 5000
 

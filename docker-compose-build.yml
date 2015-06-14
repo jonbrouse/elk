@@ -1,15 +1,15 @@
 elasticsearch:
-  image: jonbrouse/elk:elasticsearch
   extends:
     file: docker-compose-common.yml
     service: elasticsearch
+  build: elasticsearch
 logstash:
-  image: jonbrouse/elk:logstash
   extends:
     file: docker-compose-common.yml
     service: logstash
+  build: logstash
 kibana:
-  image: jonbrouse/elk:kibana
   extends:
     file: docker-compose-common.yml
     service: kibana
+  build: kibana

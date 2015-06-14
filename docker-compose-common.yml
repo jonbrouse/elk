@@ -11,7 +11,13 @@ logstash:
     - "5000:5000/udp"
   command: -f /etc/logstash.conf 
   tty: true
+  volumes:
+    - ./logstash/assets/logstash.conf:/etc/logstash.conf
+  links:
+    - elasticsearch
 kibana:
   hostname: kibana
   ports:
     - "5601:5601"
+  links:
+    - elasticsearch
