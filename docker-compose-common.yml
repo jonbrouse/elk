@@ -7,6 +7,7 @@ elasticsearch:
 logstash:
   hostname: logstash
   ports:
+    - "24224:24224"
     - "5000:5000"
     - "5000:5000/udp"
   command: -f /etc/logstash.conf 
@@ -22,3 +23,4 @@ fluentd:
   command: /opt/td-agent/usr/sbin/td-agent --config /opt/td-agent/etc/td-agent/td-agent.conf
   volumes:
     - ./fluentd/assets/td-agent.conf:/opt/td-agent/etc/td-agent/td-agent.conf
+    - /var/lib/docker/containers:/var/lib/docker/containers
