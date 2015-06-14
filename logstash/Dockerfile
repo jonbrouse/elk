@@ -15,8 +15,7 @@ RUN curl -O https://download.elasticsearch.org/logstash/logstash/logstash-${VERS
     rm -rf logstash-${VERSION}.tar.gz && \
     ln -s logstash-${VERSION} logstash
 
-# We want to mount the config file.
-#COPY assets/logstash.conf /etc/logstash.conf
+COPY assets/logstash.conf /etc/logstash.conf
 
 EXPOSE 5000
 EXPOSE 24224

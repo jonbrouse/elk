@@ -4,6 +4,8 @@ elasticsearch:
     - "9200:9200"
     - "9300:9300"
     - "9400:9400"
+  volumes:
+    - esdata/:/opt/elasticsearch/data
 logstash:
   hostname: logstash
   ports:
