@@ -15,6 +15,8 @@ RUN apt-get update && \
     apt-get autoclean && \
     apt-get --purge -y autoremove
 
+COPY assets/limits.conf /etc/security/limits.conf
+COPY assets/sysctl.conf /etc/sysctl.conf
 COPY assets/td-agent.conf /opt/td-agent/etc/td-agent/td-agent.conf
 
 ENTRYPOINT ["/opt/td-agent/embedded/bin/ruby"]
