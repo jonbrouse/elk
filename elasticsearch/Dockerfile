@@ -1,4 +1,4 @@
-FROM jonbrouse/java:8
+FROM jonbrouse/docker-java
 
 RUN apt-get update && \
     apt-get install -y curl && \
