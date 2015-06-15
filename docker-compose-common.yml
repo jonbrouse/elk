@@ -4,15 +4,18 @@ elasticsearch:
     - "9200:9200"
     - "9300:9300"
     - "9400:9400"
+  volumes:
+    - esdata/:/opt/elasticsearch/data
 logstash:
   hostname: logstash
   ports:
+    - "3515:3515"
     - "5000:5000"
     - "5000:5000/udp"
   command: -f /etc/logstash.conf 
   tty: true
   volumes:
-    - ./logstash/assets/logstash.conf:/etc/logstash.conf
+    - logstash/assets/logstash.conf:/etc/logstash.conf
 kibana:
   hostname: kibana
   ports:
