@@ -1,8 +1,9 @@
-run.sh
-kibana/kibana-4.0.2-linux-x64.tar.gz
-kibana/kibana-4.0.2-linux-x64
 elasticsearch/elasticsearch-1.5.2.tar.gz
 elasticsearch/elasticsearch-1.5.2
-logstash/logstash-1.5.0.tar.gz
-logstash/logstash-1.5.0.tar.gz
+elasticsearch/volumes/esdata/
+kibana/kibana-4.0.2-linux-x64.tar.gz
+kibana/kibana-4.0.2-linux-x64
 logstash/assets/logstash.conf
+logstash/logstash-1.5.0.tar.gz
+logstash/logstash-1.5.0.tar.gz
+nginx/assets/certs/*

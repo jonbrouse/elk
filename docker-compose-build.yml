@@ -1,15 +1,28 @@
 elasticsearch:
+  build: elasticsearch
   extends:
     file: docker-compose-common.yml
     service: elasticsearch
-  build: elasticsearch
+  volumes:
+    - elasticsearch/volumes/esdata/:/opt/elasticsearch/data
 logstash:
+  build: logstash
   extends:
     file: docker-compose-common.yml
     service: logstash
-  build: logstash
+  links:
+    - elasticsearch
 kibana:
+  build: kibana
   extends:
     file: docker-compose-common.yml
     service: kibana
-  build: kibana
+  links:
+    - elasticsearch
+nginx:
+  build: nginx
+  extends:
+    file: docker-compose-common.yml
+    service: nginx
+  links:
+    - kibana

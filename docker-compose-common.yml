@@ -17,3 +17,8 @@ kibana:
   hostname: kibana
   ports:
     - "5601:5601"
+nginx:
+  hostname: nginx
+  ports:
+    - "80:80"
+    - "443:443"

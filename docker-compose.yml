@@ -3,6 +3,8 @@ elasticsearch:
   extends:
     file: docker-compose-common.yml
     service: elasticsearch
+  volumes:
+    - elasticsearch/volumes/esdata/:/opt/elasticsearch/data
 logstash:
   image: jonbrouse/elk:logstash
   extends:
@@ -17,3 +19,10 @@ kibana:
     service: kibana
   links:
     - elasticsearch
+nginx:
+  build: nginx
+  extends:
+    file: docker-compose-common.yml
+    service: nginx
+  links:
+    - kibana
