@@ -1,7 +1,7 @@
 elasticsearch:
   hostname: elasticsearch
   volumes:
-    - esdata/:/opt/elasticsearch/data
+    - elasticsearch/volumes/esdata/:/opt/elasticsearch/data
 logstash:
   hostname: logstash
   ports:
@@ -17,3 +17,6 @@ nginx:
   ports:
     - "80:80"
     - "443:443"
+  volumes:
+    - nginx/assets/certs:/etc/nginx/certs
+    - nginx/assets/default.conf /etc/nginx/conf.d/default.conf
