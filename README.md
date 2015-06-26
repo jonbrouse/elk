@@ -3,7 +3,7 @@ This repo contains the configuration files and Dockerfiles to build individual E
 
 ## Prerequisites 
 
-You will need to have [Docker](https://docs.docker.com) and [Docker Compose](https://docs.docker.com/compose/install/) installed. If you are using a Mac check out [Boot2Docker](http://boot2docker.io/). 
+You will need to have [Docker](https://docs.docker.com) and [Docker Compose](https://docs.docker.com/compose/install/) installed. If you are using a Mac check out [Boot2Docker](http://boot2docker.io/). If you have [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed I have included a Vagrantfile that will create a VM and spin up the containers. All you'll need to do is run ```vagrant up```
 
 ## Up and Running
 Create a Logstash configuration file:
@@ -14,7 +14,7 @@ Start the containers:
 
     docker-compose up -d
 
-Docker Compose creates an Nginx proxy container that is linked to the Kibana container. You can connect to it on port 80 of your host. You will need to send an event before we can configure the indices.
+Docker Compose creates an Nginx proxy container that is linked to the Kibana container. You can connect to it on port 80 of your host. You will need to send an event before we can "Configure an index pattern."
 
 The default Logstash configuration creates a TCP input that listens on port 24642. You can manually send events to Logstash by issuing the following:
 
