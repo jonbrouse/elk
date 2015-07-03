@@ -3,7 +3,7 @@ This repo contains the configuration files and Dockerfiles to build individual E
 
 ## Prerequisites 
 
-You will need to have [Docker](https://docs.docker.com) and [Docker Compose](https://docs.docker.com/compose/install/) installed. If you are using a Mac check out [Boot2Docker](http://boot2docker.io/). If you have [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed I have included a Vagrantfile that will create a VM and spin up the containers. All you'll need to do is run ```vagrant up```
+You will need to have [Docker](https://docs.docker.com) and [Docker Compose](https://docs.docker.com/compose/install/) installed. If you are using a Mac check out [Boot2Docker](http://boot2docker.io/). 
 
 ## Up and Running
 Create a Logstash configuration file:
