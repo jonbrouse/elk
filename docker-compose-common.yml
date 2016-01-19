@@ -1,7 +1,7 @@
 elasticsearch:
   hostname: elasticsearch
   volumes:
-    - elasticsearch/volumes/esdata/:/opt/elasticsearch/data
+    - ./elasticsearch/volumes/esdata/:/opt/elasticsearch/data
 logstash:
   hostname: logstash
   ports:
@@ -9,7 +9,7 @@ logstash:
   command: -f /etc/logstash.conf 
   tty: true
   volumes:
-    - logstash/assets/logstash.conf:/etc/logstash.conf
+    - ./logstash/assets/logstash.conf:/etc/logstash.conf
 kibana:
   hostname: kibana
 nginx:
@@ -18,5 +18,5 @@ nginx:
     - "80:80"
     - "443:443"
   volumes:
-    - nginx/assets/certs:/etc/nginx/certs
-    - nginx/assets/default.conf /etc/nginx/conf.d/default.conf
+    - ./nginx/assets/certs:/etc/nginx/certs
+    - ./nginx/assets/default.conf /etc/nginx/conf.d/default.conf
