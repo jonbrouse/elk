@@ -1,28 +1,37 @@
-elasticsearch:
-  image: jonbrouse/elk:elasticsearch
-  extends:
-    file: docker-compose-common.yml
-    service: elasticsearch
-  volumes:
-    - ./elasticsearch/volumes/esdata/:/opt/elasticsearch/data
-logstash:
-  image: jonbrouse/elk:logstash
-  extends:
-    file: docker-compose-common.yml
-    service: logstash
-  links:
-    - elasticsearch
-kibana:
-  image: jonbrouse/elk:kibana
-  extends:
-    file: docker-compose-common.yml
-    service: kibana
-  links:
-    - elasticsearch
-nginx:
-  build: nginx
-  extends:
-    file: docker-compose-common.yml
-    service: nginx
-  links:
-    - kibana
+version: '2'
+services:
+  elasticsearch:
+    hostname: elasticsearch
+    image: jonbrouse/elk:elasticsearch
+    build: .
+    volumes:
+      - ./elasticsearch/volumes/esdata/:/opt/elasticsearch/data
+  logstash:
+    hostname: logstash
+    image: jonbrouse/elk:logstash
+    build: .
+    ports:
+      - "24642:24642"
+    command: -f /etc/logstash.conf 
+    tty: true
+    volumes:
+      - ./logstash/assets/logstash.conf:/etc/logstash.conf
+    links:
+      - elasticsearch
+  kibana:
+    hostname: kibana
+    image: jonbrouse/elk:kibana
+    build: .
+    links:
+      - elasticsearch
+  nginx:
+    hostname: nginx
+    image: nginx:stable-alpine
+    links:
+      - kibana
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/assets/certs:/etc/nginx/certs
+      - ./nginx/assets/nginx.conf:/etc/nginx/nginx.conf
