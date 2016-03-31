@@ -3,7 +3,7 @@ This repo contains the configuration files and Dockerfiles to build individual E
 
 ## Prerequisites 
 
-You will need to have [Docker](https://docs.docker.com) and [Docker Compose](https://docs.docker.com/compose/install/) installed. If you are using a Mac check out [Boot2Docker](http://boot2docker.io/). 
+You will need to have [Docker](https://docs.docker.com) and [Docker Compose](https://docs.docker.com/compose/install/) installed.
 
 ## Up and Running
 Create a Logstash configuration file:
@@ -52,6 +52,8 @@ Elasticsearch and Logstash containers are built with a [Java 8 container from my
 
 ## Notes
 I added a `tty=true` to the Logstash launch options because it kept immediately shutting down after start up completed.
+
+Elasticsearch is run as root, which is not recommended.
 
 ### Resources
 

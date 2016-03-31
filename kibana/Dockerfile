@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get autoclean && \
     apt-get --purge -y autoremove
 
-ENV VERSION 4.0.2
+ENV VERSION 4.5.0
 
 WORKDIR /opt
 

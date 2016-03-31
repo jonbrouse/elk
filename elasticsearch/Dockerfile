@@ -6,11 +6,14 @@ RUN apt-get update && \
     apt-get --purge -y autoremove
 
 ENV HOME_DIR /opt
-ENV VERSION 1.5.1
+ENV VERSION 2.3.0
 
 WORKDIR ${HOME_DIR}
 
-RUN curl -O https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-${VERSION}.tar.gz && \
+RUN echo ${VERSION}
+
+
+RUN curl -O https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/${VERSION}/elasticsearch-${VERSION}.tar.gz && \
     tar -xvf elasticsearch-${VERSION}.tar.gz && \
     rm -rf elasticsearch-${VERSION}.tar.gz && \
     ln -s elasticsearch-${VERSION} elasticsearch

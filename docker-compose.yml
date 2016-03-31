@@ -4,6 +4,7 @@ services:
     hostname: elasticsearch
     image: jonbrouse/elk:elasticsearch
     build: elasticsearch
+    command: -Des.insecure.allow.root=true
     volumes:
       - ./elasticsearch/volumes/esdata/:/opt/elasticsearch/data
   logstash:

@@ -6,11 +6,11 @@ RUN apt-get update && \
     apt-get --purge -y autoremove
 
 ENV HOME_DIR /opt
-ENV VERSION 1.5.0
+ENV VERSION 2.3.0
 
 WORKDIR ${HOME_DIR}
 
-RUN curl -O https://download.elasticsearch.org/logstash/logstash/logstash-${VERSION}.tar.gz && \
+RUN curl -O https://download.elastic.co/logstash/logstash/logstash-${VERSION}.tar.gz && \
     tar -xvf logstash-${VERSION}.tar.gz && \
     rm -rf logstash-${VERSION}.tar.gz && \
     ln -s logstash-${VERSION} logstash
