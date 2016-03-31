@@ -1,23 +1,17 @@
-FROM jonbrouse/java:8
+FROM java:8-alpine
 
-RUN apt-get update && \
-    apt-get install -y curl && \
-    apt-get autoclean && \
-    apt-get --purge -y autoremove
+RUN apk add --update curl tar && \
+    rm -rf /var/cache/apk/*
 
 ENV HOME_DIR /opt
 ENV VERSION 2.3.0
 
 WORKDIR ${HOME_DIR}
 
-RUN echo ${VERSION}
-
-
 RUN curl -O https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/${VERSION}/elasticsearch-${VERSION}.tar.gz && \
     tar -xvf elasticsearch-${VERSION}.tar.gz && \
     rm -rf elasticsearch-${VERSION}.tar.gz && \
     ln -s elasticsearch-${VERSION} elasticsearch
-#    elasticsearch/bin/plugin -install lmenezes/elasticsearch-kopf
 
 COPY assets/elasticsearch.yml /opt/elasticsearch/config/elasticsearch.yml
 

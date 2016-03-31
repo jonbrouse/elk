@@ -1,5 +1,5 @@
 # ELK Docker Containers
-This repo contains the configuration files and Dockerfiles to build individual Elasticsearch, Logstash and Kibana containers. You can use Docker Compose to build and run the containers. 
+This repo contains the configuration files and Dockerfiles to build individual Elasticsearch, Logstash and Kibana containers with a lightweight Alpine based image. You can use Docker Compose to build and run the containers. 
 
 ## Prerequisites 
 
@@ -28,8 +28,6 @@ This stack takes advantage of Volume mounting to facilitate quick configuration 
 
      docker-compose restart logstash
 
-If you decide to use additional ports you will have to add them to ```docker-compose-common.yml``` in the Logstash definition.
-
 ### Data Persistance 
 
 In order for your Elasticsearch data to persist the data directory is mounted at:
@@ -44,11 +42,11 @@ You can quickly enable HTTPS on the Nginx container by adding your certs the ```
     docker-compose restart nginx
 
 ## Versions
-Elasticsearch and Logstash containers are built with a [Java 8 container from my Docker Hub account.](https://registry.hub.docker.com/u/jonbrouse/docker-java/dockerfile/)
+Elasticsearch, Logstash and Kibana containers are built with an official Java image.
 
- - Elasticsearch Version 1.51
- - Logstash Version 1.50
- - Kibana Version 4.0.2
+ - Elasticsearch Version 2.3.0
+ - Logstash Version 2.3.0
+ - Kibana Version 4.5.0
 
 ## Notes
 I added a `tty=true` to the Logstash launch options because it kept immediately shutting down after start up completed.
@@ -60,3 +58,4 @@ Elasticsearch is run as root, which is not recommended.
 I used the following resources when creating this stack:
 - [Nathan LeClaire's Automating Docker Logging](http://nathanleclaire.com/blog/2015/04/27/automating-docker-logging-elasticsearch-logstash-kibana-and-logspout/)
 - [Evan Hazlett's Logging with ELK and Docker](http://evanhazlett.com/2014/11/Logging-with-ELK-and-Docker/)
+- [Groob's "A tiny Kibana DOcker container"](http://groob.io/posts/kibana-alpine/)

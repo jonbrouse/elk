@@ -1,19 +1,19 @@
-FROM debian:jessie
-MAINTAINER Jon Brouse @jonbrouse
+FROM java:8-alpine
 
-RUN apt-get update && \
-    apt-get install -y curl && \
-    apt-get autoclean && \
-    apt-get --purge -y autoremove
 
-ENV VERSION 4.5.0
+ENV KIBANA_VERSION 4.5.0
 
 WORKDIR /opt
 
-RUN curl -O https://download.elastic.co/kibana/kibana/kibana-${VERSION}-linux-x64.tar.gz && \
-    tar -xvf kibana-${VERSION}-linux-x64.tar.gz && \
-    rm -rf kibana-${VERSION}-linux-x64.tar.gz && \
-    ln -s kibana-${VERSION}-linux-x64 kibana
+RUN apk add --update nodejs curl tar && \
+    curl -LO https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VERSION}-linux-x64.tar.gz && \
+    tar -xvf kibana-${KIBANA_VERSION}-linux-x64.tar.gz && \
+    rm kibana-${KIBANA_VERSION}-linux-x64/node/bin/node && \
+    rm kibana-${KIBANA_VERSION}-linux-x64/node/bin/npm && \
+    ln -s /usr/bin/node /opt/kibana-${KIBANA_VERSION}-linux-x64/node/bin/node && \
+    ln -s /usr/bin/npm /opt/kibana-${KIBANA_VERSION}-linux-x64/node/bin/npm && \
+    rm -rf kibana-${KIBANA_VERSION}-linux-x64.tar.gz /var/cache/apk/* && \
+    ln -s kibana-${KIBANA_VERSION}-linux-x64 kibana
 
 COPY assets/kibana.yml /opt/kibana/config/kibana.yml
 
