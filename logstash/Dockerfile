@@ -1,18 +1,14 @@
-FROM jonbrouse/java:8
-
-RUN apt-get update && \
-    apt-get install -y curl && \
-    apt-get autoclean && \
-    apt-get --purge -y autoremove
+FROM java:8-alpine
 
 ENV HOME_DIR /opt
-ENV VERSION 1.5.0
+ENV VERSION 2.3.0
 
 WORKDIR ${HOME_DIR}
 
-RUN curl -O https://download.elasticsearch.org/logstash/logstash/logstash-${VERSION}.tar.gz && \
+RUN apk add --update bash curl tar && \
+    curl -O https://download.elastic.co/logstash/logstash/logstash-${VERSION}.tar.gz && \
     tar -xvf logstash-${VERSION}.tar.gz && \
-    rm -rf logstash-${VERSION}.tar.gz && \
+    rm -rf logstash-${VERSION}.tar.gz /var/cache/apk/* && \
     ln -s logstash-${VERSION} logstash
 
 COPY assets/logstash.conf /etc/logstash.conf
