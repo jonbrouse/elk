@@ -1,7 +1,7 @@
 FROM java:8-alpine
 
 ENV HOME_DIR /opt
-ENV VERSION 2.3.0
+ENV VERSION 2.3.3
 ENV LOGSTASH_PLUGINS $(curl -s https://api.github.com/orgs/logstash-plugins/repos\?per_page\=200 | perl -ne 'print "$1\n" if (/"name": "([^"]+)/)')
 
 WORKDIR ${HOME_DIR}

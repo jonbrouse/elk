@@ -1,7 +1,7 @@
 FROM java:8-alpine
 
 
-ENV KIBANA_VERSION 4.5.0
+ENV KIBANA_VERSION 4.5.1
 
 WORKDIR /opt
 
@@ -14,6 +14,8 @@ RUN apk add --update nodejs curl tar && \
     ln -s /usr/bin/npm /opt/kibana-${KIBANA_VERSION}-linux-x64/node/bin/npm && \
     rm -rf kibana-${KIBANA_VERSION}-linux-x64.tar.gz /var/cache/apk/* && \
     ln -s kibana-${KIBANA_VERSION}-linux-x64 kibana
+
+RUN /opt/kibana/bin/kibana plugin --install elasticsearch/marvel/latest
 
 COPY assets/kibana.yml /opt/kibana/config/kibana.yml
 
