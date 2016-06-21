@@ -5,6 +5,8 @@ services:
     image: jonbrouse/elk:elasticsearch
     build: elasticsearch
     command: -Des.insecure.allow.root=true
+    ports:
+      - "9200:9200"
     volumes:
       - ./elasticsearch/volumes/esdata/:/opt/elasticsearch/data
   logstash:
