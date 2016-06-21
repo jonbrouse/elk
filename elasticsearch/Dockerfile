@@ -13,11 +13,6 @@ RUN curl -O https://download.elasticsearch.org/elasticsearch/release/org/elastic
     rm -rf elasticsearch-${VERSION}.tar.gz && \
     ln -s elasticsearch-${VERSION} elasticsearch
 
-RUN /opt/elasticsearch/bin/plugin install license && \
-    /opt/elasticsearch/bin/plugin install shield && \
-    /opt/elasticsearch/bin/plugin install watcher && \
-    /opt/elasticsearch/bin/plugin install marvel-agent
-
 COPY assets/elasticsearch.yml /opt/elasticsearch/config/elasticsearch.yml
 
 EXPOSE 9200

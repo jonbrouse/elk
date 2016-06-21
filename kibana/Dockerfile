@@ -15,8 +15,6 @@ RUN apk add --update nodejs curl tar && \
     rm -rf kibana-${KIBANA_VERSION}-linux-x64.tar.gz /var/cache/apk/* && \
     ln -s kibana-${KIBANA_VERSION}-linux-x64 kibana
 
-RUN /opt/kibana/bin/kibana plugin --install elasticsearch/marvel/latest
-
 COPY assets/kibana.yml /opt/kibana/config/kibana.yml
 
 EXPOSE 5601
