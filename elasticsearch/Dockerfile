@@ -4,7 +4,7 @@ RUN apk add --update curl tar && \
     rm -rf /var/cache/apk/*
 
 ENV HOME_DIR /opt
-ENV VERSION 2.3.3
+ENV VERSION 2.4.0
 
 WORKDIR ${HOME_DIR}
 
@@ -12,9 +12,6 @@ RUN curl -O https://download.elasticsearch.org/elasticsearch/release/org/elastic
     tar -xvf elasticsearch-${VERSION}.tar.gz && \
     rm -rf elasticsearch-${VERSION}.tar.gz && \
     ln -s elasticsearch-${VERSION} elasticsearch
-
-RUN /opt/elasticsearch/bin/plugin install license && \
-    /opt/elasticsearch/bin/plugin install license
 
 COPY assets/elasticsearch.yml /opt/elasticsearch/config/elasticsearch.yml
 
