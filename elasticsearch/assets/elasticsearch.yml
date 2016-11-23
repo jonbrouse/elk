@@ -261,7 +261,7 @@ network.host: 0.0.0.0
 discovery.type: ec2
 discovery.ec2.groups: %DISCOVERY_EC2_GROUPS%
 cloud_node_auto_attributes: true
-cloud.aws.region: $AWS_REGION%
+cloud.aws.region: %AWS_REGION%
 
 # Discovery infrastructure ensures nodes can be found within a cluster
 # and master node is elected. Multicast discovery is the default.
@@ -270,7 +270,7 @@ cloud.aws.region: $AWS_REGION%
 # operational within the cluster. This should be set to a quorum/majority of 
 # the master-eligible nodes in the cluster.
 #
-discovery.zen.minimum_master_nodes: %DISCOVERY.ZEN.MINIMUM_MASTER_NODES%
+discovery.zen.minimum_master_nodes: %DISCOVERY_ZEN_MINIMUM_MASTER_NODES%
 
 # Set the time to wait for ping responses from other nodes when discovering.
 # Set this option to a higher value on a slow or congested network
