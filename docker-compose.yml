@@ -7,6 +7,7 @@ services:
     command: -Des.insecure.allow.root=true
     ports:
       - "9200:9200"
+      - "9300:9300"
     volumes:
       - ./elasticsearch/volumes/esdata/:/opt/elasticsearch/data
   logstash:

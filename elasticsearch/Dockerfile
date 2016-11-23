@@ -15,9 +15,7 @@ RUN curl -O https://download.elasticsearch.org/elasticsearch/release/org/elastic
 
 COPY assets/elasticsearch.yml /opt/elasticsearch/config/elasticsearch.yml
 
-EXPOSE 9200
-EXPOSE 9300
-EXPOSE 9400
+EXPOSE 9200 9300
 
 VOLUME /opt/elasticsearch/data
 
