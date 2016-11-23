@@ -13,6 +13,8 @@ RUN curl -O https://download.elasticsearch.org/elasticsearch/release/org/elastic
     rm -rf elasticsearch-${VERSION}.tar.gz && \
     ln -s elasticsearch-${VERSION} elasticsearch
 
+RUN ./elasticsearch/bin/plugin install https://download.elastic.co/elasticsearch/release/org/elasticsearch/plugin/cloud-aws/${VERSION}/cloud-aws-${VERSION}.zip
+
 COPY assets/elasticsearch.yml /opt/elasticsearch/config/elasticsearch.yml
 
 EXPOSE 9200 9300
