@@ -24,8 +24,6 @@ services:
     tty: true
     volumes:
       - ./logstash/assets/logstash.conf:/etc/logstash.conf
-    links:
-      - elasticsearch
   kibana:
     hostname: kibana
     container_name: kibana
