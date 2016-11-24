@@ -6,6 +6,7 @@ services:
     image: jonbrouse/elk:elasticsearch-sysadvent
     build: elasticsearch
     command: -Des.insecure.allow.root=true
+    network_mode: "host"
     ports:
       - "9200:9200"
       - "9300:9300"
