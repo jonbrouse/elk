@@ -2,6 +2,7 @@ version: '2'
 services:
   elasticsearch:
     hostname: elasticsearch
+    container_name: elasticsearch
     image: jonbrouse/elk:elasticsearch
     build: elasticsearch
     command: -Des.insecure.allow.root=true
@@ -12,6 +13,7 @@ services:
       - ./elasticsearch/volumes/esdata/:/opt/elasticsearch/data
   logstash:
     hostname: logstash
+    container_name: logstash
     image: jonbrouse/elk:logstash
     build: logstash
     ports:
@@ -24,12 +26,14 @@ services:
       - elasticsearch
   kibana:
     hostname: kibana
+    container_name: kibana
     image: jonbrouse/elk:kibana
     build: kibana
     links:
       - elasticsearch
   nginx:
     hostname: nginx
+    container_name: nginx
     image: nginx:stable-alpine
     links:
       - kibana
