@@ -10,7 +10,8 @@ RUN apk add --update bash curl perl tar && \
     curl -O https://download.elastic.co/logstash/logstash/logstash-${VERSION}.tar.gz && \
     tar -xvf logstash-${VERSION}.tar.gz && \
     rm -rf logstash-${VERSION}.tar.gz /var/cache/apk/* && \
-    ln -s logstash-${VERSION} logstash
+    ln -s logstash-${VERSION} logstash && \
+    logstash/bin/logstash-plugin install logstash-input-redis
 
 # Install every goddamn logtash plugin 
 # WIP Needs pagination - https://developer.github.com/guides/traversing-with-pagination/
@@ -18,7 +19,7 @@ RUN apk add --update bash curl perl tar && \
 
 ENV PATH=/opt/logstash/vendor/jruby/bin:$PATH
 
-EXPOSE 5000
+EXPOSE 6379
 
 ENTRYPOINT ["/opt/logstash/bin/logstash"]
 
