@@ -1,26 +1,32 @@
-FROM java:8-alpine
+FROM openjdk:8u131-jre-alpine
 
-RUN apk add --update curl tar && \
-    rm -rf /var/cache/apk/*
+# Install bash to support scripts written by elasticsearch
+RUN apk add --no-cache bash curl tar && \
+    addgroup -g 750 -S elasticsearch && \
+    adduser -u 750 -D -S -G elasticsearch elasticsearch 
 
-ENV HOME_DIR /opt
-ENV VERSION 2.4.0
+ENV HOME_DIR /usr/share/elasticsearch
+ENV VERSION 5.5.2
 
 WORKDIR ${HOME_DIR}
 
-RUN curl -O https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/${VERSION}/elasticsearch-${VERSION}.tar.gz && \
-    tar -xvf elasticsearch-${VERSION}.tar.gz && \
-    rm -rf elasticsearch-${VERSION}.tar.gz && \
-    ln -s elasticsearch-${VERSION} elasticsearch
+RUN curl -fsSL https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${VERSION}.tar.gz | tar zx --strip-components=1 && \
+    mkdir -p config data logs
 
-RUN ./elasticsearch/bin/plugin install https://download.elastic.co/elasticsearch/release/org/elasticsearch/plugin/cloud-aws/${VERSION}/cloud-aws-${VERSION}.zip
+# https://www.elastic.co/guide/en/elasticsearch/plugins/current/repository-s3.html
+RUN ./bin/elasticsearch-plugin install --batch repository-s3 
 
-COPY assets/elasticsearch.yml /opt/elasticsearch/config/elasticsearch.yml
+# Other plugins - x-pack ingest-user-agent ingest-geoip
+#for PLUGIN in x-pack ingest-user-agent ingest-geoip; do elasticsearch-plugin install --batch "$PLUGIN"; done
 
-EXPOSE 9200 9300
+COPY assets/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 
-VOLUME /opt/elasticsearch/data
+RUN chown -R elasticsearch:elasticsearch ${HOME_DIR}/*
 
-ENTRYPOINT ["/opt/elasticsearch/bin/elasticsearch"]
+USER elasticsearch
+
+EXPOSE 9200/tcp 9300/tcp
+
+ENTRYPOINT ["/usr/share/elasticsearch/bin/elasticsearch"]
 
 CMD []

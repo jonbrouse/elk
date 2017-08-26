@@ -4,12 +4,18 @@ services:
     hostname: elasticsearch
     image: jonbrouse/elk:elasticsearch
     build: elasticsearch
-    command: -Des.insecure.allow.root=true
+    #command: -Ecluster.name=docker-cluster
+    environment:
+      - http.host=0.0.0.0
+      - transport.host=127.0.0.1
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
     ports:
       - "9200:9200"
       - "9300:9300"
-    volumes:
-      - ./elasticsearch/volumes/esdata/:/opt/elasticsearch/data
+    #volumes:
+    #  - ./elasticsearch/volumes/esdata/:/opt/elasticsearch/data
   logstash:
     hostname: logstash
     image: jonbrouse/elk:logstash

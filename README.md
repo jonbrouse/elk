@@ -5,6 +5,14 @@ This repo contains the configuration files and Dockerfiles to build individual E
 
 You will need to have [Docker](https://docs.docker.com) and [Docker Compose](https://docs.docker.com/compose/install/) installed.
 
+__Elasticsearch vm_max_map_count__
+
+The `vm_max_map_count` kernel setting needs to be set to at least `262144`. Update `/etc/sysctl.conf` with the following line:
+
+```
+vm.max_map_count=262144
+```
+
 ## Up and Running
 Create a Logstash configuration file:
 
