@@ -13,6 +13,12 @@ The `vm_max_map_count` kernel setting needs to be set to at least `262144`. Upda
 vm.max_map_count=262144
 ```
 
+Or issue the command from the terminal as root
+
+```
+sysctl -w vm.max_map_count=262144
+```
+
 ## Up and Running
 Create a Logstash configuration file:
 
