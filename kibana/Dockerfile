@@ -1,6 +1,6 @@
 FROM java:8-alpine
 
-RUN apk add --no-cache bash curl tar fontconfig freetype && \
+RUN apk add --no-cache bash curl nodejs tar fontconfig freetype && \
     addgroup -g 750 -S kibana && \
     adduser -u 750 -D -S -G kibana kibana
 
@@ -10,9 +10,9 @@ ENV KIBANA_VERSION 5.5.2
 WORKDIR ${HOME_DIR}
 
 RUN curl -Ls https://artifacts.elastic.co/downloads/kibana/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz | tar zx --strip-components=1 && \
-    sed -i '/DIR=/c\DIR="\/usr\/share\/kibana"' bin/kibana bin/kibana-plugin
-
-RUN echo /usr/share/kibana/bin:/usr/share/kibana/node/bin:$PATH > /etc/profile.d/kibana
+    rm -rf node/bin/node node/bin/npm && \
+    ln -s /usr/bin/node ${HOME_DIR}/node/bin/node && \
+    ln -s /usr/bin/npm ${HOME_DIR}/node/bin/npm
 
 COPY assets/kibana.yml /opt/kibana/config/kibana.yml
 
@@ -22,7 +22,7 @@ USER kibana
 
 EXPOSE 5601
 
-RUN /usr/share/kibana/bin/kibana-plugin install x-pack
+#RUN ${HOME_DIR}/bin/kibana-plugin install x-pack
 
 ENTRYPOINT ["/usr/share/kibana/bin/kibana"]
 
