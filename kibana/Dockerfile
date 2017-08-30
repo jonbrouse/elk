@@ -1,24 +1,29 @@
 FROM java:8-alpine
 
+RUN apk add --no-cache bash curl nodejs tar fontconfig freetype && \
+    addgroup -g 750 -S kibana && \
+    adduser -u 750 -D -S -G kibana kibana
 
-ENV KIBANA_VERSION 4.6.0
+ENV HOME_DIR /usr/share/kibana
+ENV KIBANA_VERSION 5.5.2
 
-WORKDIR /opt
+WORKDIR ${HOME_DIR}
 
-RUN apk add --update nodejs curl tar && \
-    curl -LO https://download.elastic.co/kibana/kibana/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz && \
-    tar -xvf kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz && \
-    rm kibana-${KIBANA_VERSION}-linux-x86_64/node/bin/node && \
-    rm kibana-${KIBANA_VERSION}-linux-x86_64/node/bin/npm && \
-    ln -s /usr/bin/node /opt/kibana-${KIBANA_VERSION}-linux-x86_64/node/bin/node && \
-    ln -s /usr/bin/npm /opt/kibana-${KIBANA_VERSION}-linux-x86_64/node/bin/npm && \
-    rm -rf kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz /var/cache/apk/* && \
-    ln -s kibana-${KIBANA_VERSION}-linux-x86_64 kibana
+RUN curl -Ls https://artifacts.elastic.co/downloads/kibana/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz | tar zx --strip-components=1 && \
+    rm -rf node/bin/node node/bin/npm && \
+    ln -s /usr/bin/node ${HOME_DIR}/node/bin/node && \
+    ln -s /usr/bin/npm ${HOME_DIR}/node/bin/npm
 
 COPY assets/kibana.yml /opt/kibana/config/kibana.yml
 
+RUN chown -R kibana:kibana ${HOME_DIR} ${HOME_DIR}/*
+
+USER kibana
+
 EXPOSE 5601
 
-ENTRYPOINT ["/opt/kibana/bin/kibana"]
+#RUN ${HOME_DIR}/bin/kibana-plugin install x-pack
+
+ENTRYPOINT ["/usr/share/kibana/bin/kibana"]
 
 CMD []

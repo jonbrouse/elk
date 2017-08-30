@@ -1,36 +1,47 @@
-version: '2'
+version: '3'
 services:
   elasticsearch:
     hostname: elasticsearch
     image: jonbrouse/elk:elasticsearch
     build: elasticsearch
-    command: -Des.insecure.allow.root=true
+    environment:
+      - http.host=0.0.0.0
+      - transport.host=127.0.0.1
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
     ports:
       - "9200:9200"
       - "9300:9300"
-    volumes:
-      - ./elasticsearch/volumes/esdata/:/opt/elasticsearch/data
+    #volumes:
+    #  - ./elasticsearch/volumes/esdata/:/opt/elasticsearch/data
+
   logstash:
     hostname: logstash
     image: jonbrouse/elk:logstash
     build: logstash
     ports:
       - "24642:24642"
-    command: -f /etc/logstash.conf 
+    command: -f /usr/share/logstash/config/conf.d/logstash.conf 
     tty: true
     volumes:
-      - ./logstash/assets/logstash.conf:/etc/logstash.conf
+      - ./logstash/assets/logstash.conf:/usr/share/logstash/config/conf.d/logstash.conf
     links:
       - elasticsearch
     environment:
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - CLOUDTRAIL_BUCKET
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+
   kibana:
     hostname: kibana
     image: jonbrouse/elk:kibana
     build: kibana
     links:
       - elasticsearch
+    volumes:
+      - ./kibana/assets/kibana.yml:/usr/share/kibana/config/kibana.yml
+
   nginx:
     hostname: nginx
     image: nginx:stable-alpine
