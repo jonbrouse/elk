@@ -4,7 +4,6 @@ services:
     hostname: elasticsearch
     image: jonbrouse/elk:elasticsearch
     build: elasticsearch
-    #command: -Ecluster.name=docker-cluster
     environment:
       - http.host=0.0.0.0
       - transport.host=127.0.0.1
@@ -16,6 +15,7 @@ services:
       - "9300:9300"
     #volumes:
     #  - ./elasticsearch/volumes/esdata/:/opt/elasticsearch/data
+
   logstash:
     hostname: logstash
     image: jonbrouse/elk:logstash
@@ -32,12 +32,16 @@ services:
       - CLOUDTRAIL_BUCKET
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
+
   kibana:
     hostname: kibana
     image: jonbrouse/elk:kibana
     build: kibana
     links:
       - elasticsearch
+    volumes:
+      - ./kibana/assets/kibana.yml:/usr/share/kibana/config/kibana.yml
+
   nginx:
     hostname: nginx
     image: nginx:stable-alpine
