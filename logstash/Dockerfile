@@ -9,7 +9,6 @@ ENV VERSION 5.2.2
 
 WORKDIR ${HOME_DIR}
 
-#RUN apk add --update bash curl perl tar && \
 RUN apk add --no-cache bash curl tar && \
     curl -fsSL https://artifacts.elastic.co/downloads/logstash/logstash-${VERSION}.tar.gz | tar zx --strip-components=1
 
