@@ -6,7 +6,7 @@ RUN apk add --no-cache bash curl tar && \
     adduser -u 750 -D -S -G elasticsearch elasticsearch 
 
 ENV HOME_DIR /usr/share/elasticsearch
-ENV VERSION 5.5.2
+ENV VERSION 5.6.2
 
 WORKDIR ${HOME_DIR}
 
