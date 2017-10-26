@@ -5,18 +5,15 @@ RUN apk add --no-cache bash curl tar && \
     adduser -u 750 -D -S -G logstash logstash 
 
 ENV HOME_DIR /usr/share/logstash
-ENV VERSION 5.2.2
+ENV VERSION 5.6.2
 
 WORKDIR ${HOME_DIR}
 
 RUN apk add --no-cache bash curl tar && \
     curl -fsSL https://artifacts.elastic.co/downloads/logstash/logstash-${VERSION}.tar.gz | tar zx --strip-components=1
 
-# Install every goddamn logtash plugin 
-# WIP Needs pagination - https://developer.github.com/guides/traversing-with-pagination/
-#RUN for i in $(curl -s https://api.github.com/orgs/logstash-plugins/repos\?per_page\=200 | perl -ne 'print "$1\n" if (/"name": "([^"]+)/)'); do /opt/logstash/bin/logstash-plugin install $i; done
-RUN /usr/share/logstash/bin/logstash-plugin install logstash-codec-cloudtrail
-#ENV PATH=/opt/logstash/vendor/jruby/bin:$PATH
+#RUN /usr/share/logstash/bin/logstash-plugin install logstash-codec-cloudtrail
+RUN /usr/share/logstash/bin/logstash-plugin install logstash-filter-csv logstash-input-s3
 
 #COPY ./assets/logstash.yml /usr/share/logstash/config/logstash.yml
 
