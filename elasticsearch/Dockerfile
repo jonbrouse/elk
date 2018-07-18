@@ -6,18 +6,13 @@ RUN apk add --no-cache bash curl tar && \
     adduser -u 750 -D -S -G elasticsearch elasticsearch 
 
 ENV HOME_DIR /usr/share/elasticsearch
-ENV VERSION 5.6.2
+ENV VERSION 6.3.1
+ENV ES_TMPDIR ${HOME_DIR}/tmp
 
 WORKDIR ${HOME_DIR}
 
-RUN curl -fsSL https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${VERSION}.tar.gz | tar zx --strip-components=1 && \
-    mkdir -p config data logs
-
-# https://www.elastic.co/guide/en/elasticsearch/plugins/current/repository-s3.html
-RUN ./bin/elasticsearch-plugin install --batch repository-s3 
-
-# Other plugins - x-pack ingest-user-agent ingest-geoip
-#for PLUGIN in x-pack ingest-user-agent ingest-geoip; do elasticsearch-plugin install --batch "$PLUGIN"; done
+RUN curl -fsSL https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-${VERSION}.tar.gz | tar zx --strip-components=1 && \
+    mkdir -p config data logs ${ES_TMPDIR}
 
 COPY assets/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 
