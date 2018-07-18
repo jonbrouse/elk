@@ -2,7 +2,7 @@ version: '3'
 services:
   elasticsearch:
     hostname: elasticsearch
-    image: jonbrouse/elk:elasticsearch
+    image: jonbrouse/elk:elasticsearch-6.3.1
     build: elasticsearch
     environment:
       - http.host=0.0.0.0
@@ -20,7 +20,7 @@ services:
 
   logstash:
     hostname: logstash
-    image: jonbrouse/elk:logstash
+    image: jonbrouse/elk:logstash-6.3.1
     build: logstash
     ports:
       - "24642:24642"
@@ -42,7 +42,7 @@ services:
 
   kibana:
     hostname: kibana
-    image: jonbrouse/elk:kibana
+    image: jonbrouse/elk:kibana-6.3.1
     build: kibana
     links:
       - elasticsearch
