@@ -5,7 +5,7 @@ RUN apk add --no-cache bash curl tar && \
     adduser -u 750 -D -S -G logstash logstash 
 
 ENV HOME_DIR /usr/share/logstash
-ENV VERSION 5.6.2
+ENV VERSION 6.3.1
 
 WORKDIR ${HOME_DIR}
 
