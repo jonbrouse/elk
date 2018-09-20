@@ -6,7 +6,7 @@ RUN apk add --no-cache bash curl nodejs tar fontconfig freetype && \
     adduser -u 750 -D -S -G kibana kibana
 
 ENV HOME_DIR /usr/share/kibana
-ENV KIBANA_VERSION 6.3.1
+ENV KIBANA_VERSION 6.4.1
 
 WORKDIR ${HOME_DIR}
 
