@@ -9,10 +9,8 @@ ENV VERSION 6.4.1
 
 WORKDIR ${HOME_DIR}
 
-RUN apk add --no-cache bash curl tar && \
-    curl -fsSL https://artifacts.elastic.co/downloads/logstash/logstash-${VERSION}.tar.gz | tar zx --strip-components=1
+RUN curl -fsSL https://artifacts.elastic.co/downloads/logstash/logstash-${VERSION}.tar.gz | tar zx --strip-components=1
 
-#RUN /usr/share/logstash/bin/logstash-plugin install logstash-codec-cloudtrail
 RUN /usr/share/logstash/bin/logstash-plugin install logstash-filter-csv \
                                                     logstash-input-cloudwatch_logs \
                                                     logstash-input-s3
