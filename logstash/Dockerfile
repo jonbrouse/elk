@@ -21,7 +21,7 @@ RUN chown -R logstash:logstash ${HOME_DIR} ${HOME_DIR}/*
 
 USER logstash
 
-EXPOSE 5000
+EXPOSE 5000 35753
 
 ENTRYPOINT ["/usr/share/logstash/bin/logstash"]
 
