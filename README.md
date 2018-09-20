@@ -2,9 +2,6 @@
 
 This repo contains the configuration files and Dockerfiles to build individual Elasticsearch, Logstash and Kibana containers with a lightweight Alpine based image. You can use Docker Compose to build and run the containers. 
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 **Table of Contents**
 
 - [Prerequisites](#prerequisites)
@@ -15,8 +12,6 @@ This repo contains the configuration files and Dockerfiles to build individual E
   - [Enabling HTTPS](#enabling-https)
 - [Notes](#notes)
   - [Resources](#resources)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Up and Running
 
