@@ -2,7 +2,7 @@ version: '3'
 services:
   elasticsearch:
     hostname: elasticsearch
-    image: jonbrouse/elk:elasticsearch-6.4.1
+    image: jonbrouse/elk:elasticsearch-6.5.3
     build: elasticsearch
     environment:
       - http.host=0.0.0.0
@@ -20,10 +20,11 @@ services:
 
   logstash:
     hostname: logstash
-    image: jonbrouse/elk:logstash-6.4.1
+    image: jonbrouse/elk:logstash-6.5.3
     build: logstash
     ports:
       - "24642:24642"
+      - "35753:35753"
     #command: -f /usr/share/logstash/config/conf.d/logstash.conf --log.level debug
     command: -f /usr/share/logstash/config/conf.d/logstash.conf
     tty: true
@@ -42,7 +43,7 @@ services:
 
   kibana:
     hostname: kibana
-    image: jonbrouse/elk:kibana-6.4.1
+    image: jonbrouse/elk:kibana-6.5.3
     build: kibana
     links:
       - elasticsearch
