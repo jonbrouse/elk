@@ -1,5 +1,4 @@
-#FROM openjdk:8u131-jre-alpine
-FROM openjdk:jre-alpine
+FROM openjdk:12-alpine
 
 RUN apk add --no-cache bash curl nodejs tar fontconfig freetype && \
     addgroup -g 750 -S kibana && \
