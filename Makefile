@@ -24,3 +24,5 @@ kibana:
 logstash:
 	@VERSION=$(VERSION) docker-compose build elasticsearch
 
+up:
+	@VERSION=$(VERSION) docker-compose up -d
