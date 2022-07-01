@@ -1,5 +1,11 @@
 # ELK Docker Containers
 
+---------
+
+**Do not attempt to build these containers, only pull them from Dockerhub** 
+
+---------
+
 This repo contains the configuration files and Dockerfiles to build individual Elasticsearch, Logstash and Kibana containers with a lightweight Alpine based image. You can use Docker Compose to build and run the containers. 
 
 **Table of Contents**
