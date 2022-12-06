@@ -16,7 +16,8 @@ services:
       - "9200:9200"
       - "9300:9300"
     volumes:
-      - "elasticsearch_data_volume:/opt/elasticsearch/data"
+      #- "elasticsearch_data_volume:/opt/elasticsearch/data"
+      - ./backup/source/opt/elasticsearch/data:/opt/elasticsearch/data
 
   logstash:
     hostname: logstash

@@ -10,16 +10,16 @@ backup_container() {
 }
 
 copy_logs() {
-  BUCKET=""
+  BUCKET="neuroflow-prod-cloudfront-logs"
   ARCHIIVE_DESTINATION="logs/archive/"
   DESTINATION="../cloudfront/"
   
-  FILES=".2022-06-17*"
+  FILES="E1V0BZ3JX3PZ95.2022-07-01*"
 
   aws s3 cp s3://$BUCKET/ $ARCHIIVE_DESTINATION  --recursive --exclude "*" --include "$FILES" 
 
   cd logs/archive && gunzip *.gz && mv * $DESTINATION
 }
 
-backup_container
-#copy_logs
+#backup_container
+copy_logs
